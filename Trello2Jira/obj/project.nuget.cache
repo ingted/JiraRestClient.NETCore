@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "P6s+4nyUrsavUeWcI18RLEI6YBD7gQR+wHgu/ZCH8YJVqPH7nrntoTnnLf9WXvPG01QEyN+ig5WEAEUUa8uk+Q==",
+  "success": true,
+  "projectFilePath": "U:\\Scheduler\\JiraRestClient.NETCore\\Trello2Jira\\Trello2Jira.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\fsharp.core\\8.0.100\\fsharp.core.8.0.100.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://10.36.205.96:8080/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}

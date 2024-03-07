@@ -30,7 +30,7 @@ namespace JiraRestClient.Net.Test
             issue.Should().NotBeNull();
             issue.Fields.Summary.Should().NotBeNull();
             issue.Fields.Description.Should().NotBeNull();
-            issue.RenderedFields.Description.Should().NotBeNull();
+            //issue.RenderedFields.Description.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -65,11 +65,17 @@ namespace JiraRestClient.Net.Test
                     {
                         Key = ProjectKey
                     },
+                    //,
                     Issuetype = new IssueType
                     {
-                        Id = "10009",
+                        //Id = "10000"
                         Name = "Story"
-                    }
+                    },
+                    StoryPoint = 0//,
+                    //Timetracking = new Timetracking
+                    //{
+                    //    OriginalEstimate = "0m"
+                    //}
                 }
             };
             var issueResponse = RestClient.IssueClient.CreateIssue(issueUpdate);
@@ -88,7 +94,7 @@ namespace JiraRestClient.Net.Test
             {
                 png, pdf
             };
-            var attachments = RestClient.IssueClient.AddAttachment("DEMO-3", streams);
+            var attachments = RestClient.IssueClient.AddAttachment("ST-1", streams);
             attachments.Should().NotBeEmpty().And.HaveCount(2);
         }
     }

@@ -8,6 +8,9 @@ namespace JiraRestClient.Net.Domain.Issue
         [JsonPropertyName("expand")]
         public string Expand { get; set; }
 
+        //[JsonPropertyName("key")]
+        //public string Key { get; set; }
+
         [JsonPropertyName("fields")]
         public IssueFields Fields { get; set; }
 
@@ -81,19 +84,21 @@ namespace JiraRestClient.Net.Domain.Issue
         [JsonPropertyName("content")]
         public List<Content> Content { get; set; }
     }
-    
-    
+
+
     public class IssueFields
     {
         [JsonPropertyName("parent")]
         public Issue Parent { get; set; }
-        
+
         [JsonPropertyName("summary")]
         public string Summary { get; set; }
         [JsonPropertyName("progress")]
         public Progress Progress { get; set; }
+
         [JsonPropertyName("timetracking")]
         public Timetracking Timetracking { get; set; }
+
         [JsonPropertyName("issuetype")]
         public IssueType Issuetype { get; set; }
         [JsonPropertyName("votes")]
@@ -156,15 +161,33 @@ namespace JiraRestClient.Net.Domain.Issue
         public string LastViewed { get; set; }
         [JsonPropertyName("components")]
         public List<Component> Components { get; set; }
-        [JsonPropertyName("comment")] 
+        [JsonPropertyName("comment")]
         public CommentList CommentList { get; set; }
+
+
+        int sp = 0;
+
+        [JsonPropertyName("customfield_10031")]
+        public float StoryPoint { get; set; }
+        //{ 
+        //    get { return sp; };
+        //    set {
+
+        //    }; 
+        //}
+
         [JsonPropertyName("timeoriginalestimate")]
         public int? Timeoriginalestimate { get; set; }
         [JsonPropertyName("aggregatetimespent")]
         public int? Aggregatetimespent { get; set; }
     }
 
-    public class Timetracking
+     //"timetracking": {
+     //       "originalEstimate": "4m",
+     //       "remainingEstimate": "3m",
+     //   }
+
+public class Timetracking
     {
         [JsonPropertyName("originalestimate")]
         public string OriginalEstimate { get; set; }

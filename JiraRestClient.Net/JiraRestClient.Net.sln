@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraRestClient.Net", "JiraRestClient.Net\JiraRestClient.Net.csproj", "{3475F11D-B88A-4611-9623-3FBF9B33985B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraRestClient.Net", "JiraRestClient.Net\JiraRestClient.Net.csproj", "{3475F11D-B88A-4611-9623-3FBF9B33985B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraRestClient.Net.Test", "JiraRestClient.Net.Test\JiraRestClient.Net.Test.csproj", "{A305E2B0-796F-42F5-9BBD-FFEE7A8D7BCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraRestClient.Net.Test", "JiraRestClient.Net.Test\JiraRestClient.Net.Test.csproj", "{A305E2B0-796F-42F5-9BBD-FFEE7A8D7BCE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Trello2Jira", "..\Trello2Jira\Trello2Jira.fsproj", "{BD5D1024-C4FB-4918-995F-AB1569EFB585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,12 @@ Global
 		{A305E2B0-796F-42F5-9BBD-FFEE7A8D7BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A305E2B0-796F-42F5-9BBD-FFEE7A8D7BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A305E2B0-796F-42F5-9BBD-FFEE7A8D7BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD5D1024-C4FB-4918-995F-AB1569EFB585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5D1024-C4FB-4918-995F-AB1569EFB585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5D1024-C4FB-4918-995F-AB1569EFB585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5D1024-C4FB-4918-995F-AB1569EFB585}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

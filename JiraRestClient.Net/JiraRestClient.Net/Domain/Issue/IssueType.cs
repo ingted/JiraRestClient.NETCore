@@ -2,13 +2,22 @@
 
 namespace JiraRestClient.Net.Domain.Issue
 {
+    //public class IssueType : Base
+    //{
+    //    [JsonPropertyName("description")]
+    //    public string Description { get; set; }
+
+
+    //    [JsonPropertyName("iconurl")]
+    //    public string IconUrl { get; set; }
+
+
+    //    [JsonPropertyName("subtask")]
+    //    public bool Subtask { get; set; }
+    //}
+
     public class IssueType : Base
     {
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-        [JsonPropertyName("iconurl")]
-        public string IconUrl { get; set; }
-        [JsonPropertyName("subtask")]
-        public bool Subtask { get; set; }
+
     }
 }

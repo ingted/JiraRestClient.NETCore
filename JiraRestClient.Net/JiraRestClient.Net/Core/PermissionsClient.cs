@@ -37,7 +37,7 @@ namespace JiraRestClient.Net.Core
                 uri = uri.AddQuery($"{RestParamConstants.IssueId}={issueId}");
             }
 
-            var stream = Client.GetStringAsync(uri.ToString());
+            var stream = Client.GetStringAsync(uri.ToString() + "&permissions=ADMINISTER,CREATE_ISSUES");
             var streamResult = stream.Result;
             return JsonSerializer.Deserialize<Permissions>(streamResult);
         }

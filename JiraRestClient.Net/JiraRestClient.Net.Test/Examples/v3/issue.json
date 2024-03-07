@@ -2,7 +2,7 @@
   "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_10621.cmdb.label,customfield_10621.cmdb.objectKey,customfield_10621.cmdb.attributes,customfield_10052.properties,customfield_10053.properties,customfield_10010.requestTypePractice",
   "id": "333004",
   "self": "https://sma.atlassian.net/rest/api/3/issue/333004",
-  "key": "UITEST-1388",
+  "key": "ST-1388",
   "fields": {
     "parent": {
       "id": "116409",

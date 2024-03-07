@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <RunSettings>
     <TestRunParameters>
-        <Parameter name="BaseUrl" value=""/>
-        <Parameter name="AccountId" value=""/>
-        <Parameter name="Username" value=""/>
-        <Parameter name="Password" value=""/>
-        <Parameter name="ProjectKey" value=""/>
-        <Parameter name="IssueKeyToSearch" value=""/>
+        <Parameter name="BaseUrl" value="https://unidataplatform.atlassian.net/"/>
+        <Parameter name="AccountId" value="712020:33dde142-de22-42ed-9b80-1fe1b22a57a5"/>
+        <Parameter name="Username" value="anibal.yeh@uni-psg.com"/>
+        <Parameter name="Password" value="ATATT3xFfGF0gJRxjdv_O4PmXtQ4lrFCad_vVBJ8xGjhsZqcLKEULEicuvz4Y_fZ-RLj50Z4gRiHnLFiolxy3oxnhyiTWVDtvOF7WuZaaS_kuh1wa1TJn8xS5yKE-hKMZ43muRs0NPhkc6Dk05e8LKwuBKjUUEMX3KcADmYma697R83KZI-qbMw=B998632F"/>
+        <Parameter name="ProjectKey" value="ST"/>
+        <Parameter name="IssueKeyToSearch" value="ST-1"/>
     </TestRunParameters>
 </RunSettings>
