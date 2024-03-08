@@ -278,15 +278,7 @@ type ResourceLimits = {
 type CardDescription = {
     mutable desc: string option
     mutable id: string
-    mutable name: string option
-    mutable idShort: int
-    mutable shortLink: string
-}
-
-type CardDescription2 = {
-    mutable desc: string option
-    mutable id: string
-    //mutable name: string option
+    mutable name: string
     mutable idShort: int
     mutable shortLink: string
 }
@@ -320,7 +312,7 @@ type CheckItemReference = {
 }
 
 type DataDetails = {
-    mutable card: obj option
+    mutable card: CardDescription option
     mutable old: OldDescription option
     mutable board: BoardDetails option
     mutable list: ListDetails option
@@ -401,7 +393,7 @@ type LabelDetails = {
     mutable id: string
     mutable idBoard: string
     mutable name: string
-    mutable color: string option
+    mutable color: string
     mutable uses: int
 }
 
@@ -522,7 +514,7 @@ type PluginDataValue = {
 
 type PluginData = {
     mutable id: string
-    mutable idPlugin: string option
+    mutable idPlugin: string
     mutable scope: string
     mutable idModel: string
     mutable value: string // JSON string since F# doesn't directly handle nested arbitrary JSON in types; you'll parse this separately.
@@ -627,7 +619,7 @@ type Trello = {
     mutable shortUrl: string
     mutable idTags: obj []
     mutable datePluginDisable: obj option
-    mutable creationMethod: string option
+    mutable creationMethod: string
     mutable ixUpdate: string
     mutable templateGallery: obj option
     mutable enterpriseOwned: bool
@@ -645,6 +637,165 @@ type Trello = {
     mutable pluginData: PluginData []
 }
 
+
+let initCheckItem () : CheckItem = {
+    id = ""
+    name = ""
+    nameData = NonedescData
+    pos = 0
+    state = ""
+    due = None
+    dueReminder = None
+    idMember = None
+    idChecklist = ""
+}
+
+let initChecklistItem () : ChecklistItem = {
+    id = ""
+    name = ""
+    idBoard = ""
+    idCard = ""
+    pos = 0
+    limits = { perChecklist = { status = ""; disableAt = 0; warnAt = 0 } }
+    checkItems = List.empty
+    creationMethod = None
+}
+
+let initMember () : Member = {
+    id = ""
+    aaId = ""
+    activityBlocked = false
+    avatarHash = None
+    avatarUrl = None
+    bio = None
+    bioData = None
+    confirmed = true
+    fullName = ""
+    idEnterprise = None
+    idEnterprisesDeactivated = None
+    idMemberReferrer = None
+    idPremOrgsAdmin = List.empty
+    initials = ""
+    memberType = ""
+    nonPublic = None
+    nonPublicAvailable = false
+    products = List.empty
+    url = ""
+    username = ""
+    status = ""
+}
+
+
+
+let initLimitSettings () : LimitSettings = {
+    status = ""
+    disableAt = 0
+    warnAt = 0
+}
+
+let initAttachmentLimits () : AttachmentLimits = {
+    perBoard = initLimitSettings ()
+    perCard = initLimitSettings ()
+}
+
+let initBoardLimits () : BoardLimits = {
+    totalMembersPerBoard = initLimitSettings ()
+    totalAccessRequestsPerBoard = initLimitSettings ()
+}
+
+let initCardLimits () : CardLimits = {
+    openPerBoard = initLimitSettings ()
+    openPerList = initLimitSettings ()
+    totalPerBoard = initLimitSettings ()
+    totalPerList = initLimitSettings ()
+}
+
+let initChecklistLimits () : ChecklistLimits = {
+    perBoard = initLimitSettings ()
+    perCard = initLimitSettings ()
+}
+
+let initCustomFieldLimits () : CustomFieldLimits = {
+    perBoard = initLimitSettings ()
+}
+
+let initCustomFieldOptionLimits () : CustomFieldOptionLimits = {
+    perField = initLimitSettings ()
+}
+
+let initLabelLimits () : LabelLimits = {
+    perBoard = initLimitSettings ()
+}
+
+let initListLimits () : ListLimits = {
+    openPerBoard = initLimitSettings ()
+    totalPerBoard = initLimitSettings ()
+}
+
+let initStickerLimits () : StickerLimits = {
+    perCard = initLimitSettings ()
+}
+
+let initReactionLimits () : ReactionLimits = {
+    perAction = initLimitSettings ()
+    uniquePerAction = initLimitSettings ()
+}
+
+let initResourceLimits () : ResourceLimits = {
+    attachments = initAttachmentLimits ()
+    boards = initBoardLimits ()
+    cards = initCardLimits ()
+    checklists = initChecklistLimits ()
+    checkItems = { perChecklist = initLimitSettings () }
+    customFields = initCustomFieldLimits ()
+    customFieldOptions = initCustomFieldOptionLimits ()
+    labels = initLabelLimits ()
+    lists = initListLimits ()
+    stickers = initStickerLimits ()
+    reactions = initReactionLimits ()
+}
+
+let initTrello () : Trello = {
+    id = ""
+    nodeId = ""
+    name = ""
+    desc = ""
+    descData = None
+    closed = false
+    dateClosed = None
+    idOrganization = ""
+    idEnterprise = None
+    limits = initResourceLimits ()
+    pinned = false
+    starred = false
+    url = ""
+    prefs = Unchecked.defaultof<_>
+    shortLink = ""
+    subscribed = false
+    labelNames = Unchecked.defaultof<_>
+    powerUps = [||]
+    dateLastActivity = ""
+    dateLastView = ""
+    shortUrl = ""
+    idTags = [||]
+    datePluginDisable = None
+    creationMethod = ""
+    ixUpdate = ""
+    templateGallery = None
+    enterpriseOwned = false
+    idBoardSource = None
+    premiumFeatures = [||]
+    idMemberCreator = ""
+    actions = [||]
+    cards = [||]
+    labels = [||]
+    lists = [||]
+    members = [||]
+    checklists = [||]
+    customFields = [||]
+    memberships = [||]
+    pluginData = [||]
+}
 
 #r @"nuget: Newtonsoft.Json"
 
@@ -699,32 +850,10 @@ updateEmojiInFile @"C:\Users\Administrator\Desktop\New folder\7xvXay78.json"
 
 
 
-let findNullFields (jsonContent: string) : Set<string> =
-    let parsedJson = JToken.Parse(jsonContent)
-    let nullFields = new System.Collections.Generic.HashSet<string>()
-
-    let rec traverse (token : JToken) =
-        match token with
-        | :? JObject as obj ->
-            for property in obj.Properties() do
-                if property.Value.Type = JTokenType.Null then
-                    nullFields.Add(property.Name) |> ignore
-                traverse property.Value
-        | :? JArray as array ->
-            for item in array do
-                traverse item
-        | _ -> () // Do nothing for simple values
-
-    traverse parsedJson
-    Set.ofSeq nullFields  // Convert to F# set for distinct field names
 
 
-let nullFields = 
-    let jsonContent = File.ReadAllText(@"C:\Users\Administrator\Desktop\New folder\7xvXay78.json")
-    findNullFields jsonContent
 
-nullFields
-|> Seq.iter (printfn "%s")
+
 
 
 let deserializeCheckItem (json: string) : CheckItem =
@@ -755,41 +884,6 @@ let config = JsonConfig.create(allowUntyped = true)
 
 let deserialized = Json.deserializeEx<Trello> config trello
 
-let trello2 = File.ReadAllText @"C:\Users\Administrator\Desktop\New folder\7xvXay78.json"
-let deserialized2 = Json.deserializeEx<Trello> config trello2
-
-
-
-let err = 
-    try
-        Json.deserializeEx<Trello> config trello2
-        None
-    with
-    | exn ->
-        Some exn
-
-err.Value
-
-
-type RecordType = {
-    stringMember: string
-}
-
-let json = """{"stringMember":null}"""
-
-// this attempt to deserialize will throw exception 
-let deserialized = Json.deserialize<RecordType> json
-
-
-
-
-type Example = Map<string, string option>
-
-let example: Example = Map.empty
-
-example
-|> Map.add "p" None
-|> Json.serialize 
 //Json.deserializeEx<Map<string, string>> config "{}"
 
 
